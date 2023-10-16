@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 require("dotenv").config();
-
+//changes
 const dbConnect = async () => {
     const MONGO_URL = process.env.MONGO_URL;
    
@@ -11,7 +11,7 @@ const dbConnect = async () => {
     }catch(error){
         console.log("Error while connecting to db ", error.message)
     }
-    
+
 }
 
 module.exports = { dbConnect };

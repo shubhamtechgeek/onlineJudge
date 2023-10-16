@@ -20,7 +20,7 @@ const userSchema = new mongoose.Schema({
   password: {
     type: String
   },
-  
+  //changes
 });
 
 module.exports = mongoose.model("user", userSchema);
