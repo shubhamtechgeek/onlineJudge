@@ -11,6 +11,7 @@ const dbConnect = async () => {
     }catch(error){
         console.log("Error while connecting to db ", error.message)
     }
+    
 }
 
 module.exports = { dbConnect };
