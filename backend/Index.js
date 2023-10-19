@@ -49,19 +49,14 @@ app.post("/register", async (req, res) => {
         password: hashedPassword 
     });
 
-    //generate a token for the user and share it. 
-    const token = jwt.sign({id: user._id, userName}, process.env.SECRET_KEY, {expiresIn: "1h"});
-    user.token = token;
-    user.password = undefined;
+    
     res.status(200).json({
         message: "You Have Successfully Registred!",
         user
     });
-     
-
-    }catch (error){
-        console.log(error.message);
-    }
+}catch (error){
+    console.log(error.message);
+}
 });
 
 app.post("/login", async (req, res) => {
@@ -88,12 +83,29 @@ app.post("/login", async (req, res) => {
             return res.status(400).send("Password is incorrect.");
         }
 
+        //generate a token for the user and share it. 
+    const token = jwt.sign({id: user._id, userName}, process.env.SECRET_KEY, {expiresIn: "1h"});
+    user.token = token;
+    user.password = undefined;
+
         //store cookies
+        const options = {
+            expires: new Date(Date.now() + 1*24*60*60*1000),
+            httpOnly: true, //only manipulate by server not by your frontend/user
+        };
 
-
+        res.status(200).cookie("token", token, options).json({
+            message: "You have succesfully logged in!",
+            success: true,
+            token,
+        });
         //send the token
+
+
     }catch(error){
 
     // }
-}});
+}
+}
+);
 //need to implement logout as well
