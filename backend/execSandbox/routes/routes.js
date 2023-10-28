@@ -6,7 +6,4 @@ router.route("/hello").get(judgeHome);
 
 router.route("/run").get(judgeExec);
 
-
-	
-
 module.exports = router;
