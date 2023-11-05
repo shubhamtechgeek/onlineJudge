@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom'
 
 const Navbar = () => {
 
-
+  const token = localStorage.getItem('token');
   
   return (
     <div>
@@ -12,7 +12,7 @@ const Navbar = () => {
     <div className="sm:flex sm:items-center sm:justify-between">
       <div className="text-center sm:text-left">
         <h1 className="text-2xl font-bold text-white sm:text-3xl font-mono">
-          AlgoJudge
+          <Link to="/">AlgoJudge</Link>
         </h1>
 
         <p className="mt-1.5 text-sm font-mono text-green-600">
@@ -21,33 +21,29 @@ const Navbar = () => {
       </div>
 
       <div className="mt-4 flex flex-col gap-4 sm:mt-0 sm:flex-row sm:items-center">
+      {token ? (
+            <button
+            className="font-mono block rounded-lg border border-green-600 bg-green-600 px-5 py-3 text-sm font-medium text-white transition hover:bg-black focus:outline-none focus:ring"
+            type="button"
+          >
+            <Link to="/profile">Profile</Link>
+          </button>
+          ) : (
+            <button
+              className="font-mono block rounded-lg border border-green-600 bg-green-600 px-5 py-3 text-sm font-medium text-white transition hover:bg-black focus:outline-none focus:ring"
+              type="button"
+            >
+              <Link to="/login">Login / Signup</Link>
+            </button>
+          )}
+        
         <button
           className="inline-flex items-center justify-center gap-1.5 rounded-lg border border-green-600 bg-green-600 px-5 py-3 text-sm font-medium text-white transition hover:bg-black focus:outline-none focus:ring"
           type="button"
-        >
+          
+        ><Link target='_blank' rel="noopener noreferrer" to="https://github.com/shubhamtechgeek/onlineJudge/">
           <span className="text-sm font-medium font-mono text-white"> Github </span>
-
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-4 w-4"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-            strokeWidth="2"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-            />
-          </svg>
-        </button>
-        <span></span>
-        <button
-          className="font-mono block rounded-lg  border border-green-600 bg-green-600 px-5 py-3 text-sm font-medium text-white transition hover:bg-black focus:outline-none focus:ring"
-          type="button"
-        >
-          <Link to="/login">Login / Signup</Link>
+        </Link>
         </button>
       </div>
     </div>
