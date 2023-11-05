@@ -1,1 +1,1 @@
-![Alt text](relative%20path/frontend/assets/homepage.png?raw=true "HomePage")
+![Alt text](/frontend/assets/homepage.png?raw=true "HomePage")
