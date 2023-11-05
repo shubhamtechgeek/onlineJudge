@@ -1,6 +1,10 @@
 import React from 'react'
+import {Link} from 'react-router-dom'
 
 const Navbar = () => {
+
+
+  
   return (
     <div>
         <header>
@@ -38,12 +42,12 @@ const Navbar = () => {
             />
           </svg>
         </button>
-
+        <span></span>
         <button
           className="font-mono block rounded-lg  border border-green-600 bg-green-600 px-5 py-3 text-sm font-medium text-white transition hover:bg-black focus:outline-none focus:ring"
           type="button"
         >
-          Login / Signup
+          <Link to="/login">Login / Signup</Link>
         </button>
       </div>
     </div>
@@ -53,4 +57,4 @@ const Navbar = () => {
   )
 }
 
-export default Navbar
+export default Navbar;
