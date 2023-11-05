@@ -1,5 +1,5 @@
-const { executeCpp } = require("../Service/executeCppService");
-const { generateFile } = require("../Service/generateFileService");
+const { executeCpp } = require("../service/executeCppService");
+const { generateFile } = require("../service/generateFileService");
 
 const judgeHome = (req, res) => {
   res.send("Hello World!");
