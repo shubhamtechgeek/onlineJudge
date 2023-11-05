@@ -40,12 +40,12 @@ const Login = () => {
       
       console.log(data);
       localStorage.setItem("token",data.token);
+      localStorage.setItem("user", data.email)
+   
       const { success, message } = data;
       if (success) {
         handleSuccess(message);
-        setTimeout(() => {
           navigate("/");
-        }, 1000);
       } else {
         handleError(message);
       }
