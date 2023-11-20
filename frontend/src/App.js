@@ -5,6 +5,7 @@ import HomePage from "./Pages/HomePage";
 import Login from "./Component/Auth/Login";
 import ProfilePage from "./Pages/ProfilePage";
 import Logout from "./Component/Auth/Logout";
+import ProblemPage from "./Pages/ProblemPage";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path="/signup" element={<Signup />} />
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="/logout" element={<Logout />} />
+          <Route path="/problem/twoSum" element={<ProblemPage />} />
         </Routes>
       </Router>
     </div>

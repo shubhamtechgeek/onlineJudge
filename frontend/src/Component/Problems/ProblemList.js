@@ -47,7 +47,7 @@ const ProblemList = () => {
             {problems.map((individualProblem, index) => (
               <tr key={index}>
                 <td className="whitespace-nowrap px-16 py-2 font-medium text-gray-900 dark:text-white">
-                  <Link to="{individualProblem.title}"> {individualProblem.title}</Link> 
+                  <Link to="/problem/twoSum"> {individualProblem.title}</Link> 
                 </td>
                 <td className="whitespace-nowrap px-16 py-2 text-gray-700 dark:text-gray-200">
                   {individualProblem.difficulty}

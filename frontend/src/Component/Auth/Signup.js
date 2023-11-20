@@ -44,12 +44,22 @@ const Signup = () => {
   };
 
   return (
-    <div className="w-full max-w-xs">
-      <h2 className="font-mono font-bold text-center text-white">Signup Account</h2>
-      <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" onSubmit={handleSubmit}>
+    <div className="h-screen w-screen flex items-center justify-center">
+      <div>
+        <div className="text-center">
+          <h1 className="text-2xl font-bold text-white sm:text-3xl font-mono">
+            <Link to="/">AlgoJudge</Link>
+          </h1>
+
+          <p className="mt-1.5 text-sm font-mono text-green-600">
+            This is an online judge which looks good :{")"}
+          </p>
+        </div>
+      <h1 className="font-mono text-center text-white mt-8 mb-8">Signup Account</h1>
+      <form className="bg-black overflow-auto flex flex-col justify-center items-center" onSubmit={handleSubmit}>
         <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">Email</label>
-          <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          <label className="ml-6 text-green-600 text-sm font-mono mb-2" htmlFor="email">Email </label>
+          <input className="shadow appearance-none font-mono border-green-600 bg-black border-2 rounded py-2 px-3 text-white leading-tight focus:outline-none focus:shadow-outline"
             type="email"
             name="email"
             value={email}
@@ -58,8 +68,8 @@ const Signup = () => {
           />
         </div>
         <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">Username</label>
-          <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          <label className="text-green-600 text-sm font-mono mb-2" htmlFor="email">Username </label>
+          <input className="shadow appearance-none font-mono border-green-600 bg-black border-2 rounded py-2 px-3 text-white leading-tight focus:outline-none focus:shadow-outline"
             type="text"
             name="username"
             value={username}
@@ -68,20 +78,24 @@ const Signup = () => {
           />
         </div>
         <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">Password</label>
-          <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          <label className="text-green-600 text-sm font-mono mb-2" htmlFor="password">Password </label>
+          <input className="shadow appearance-none font-mono border-green-600 bg-black border-2 rounded py-2 px-3 text-white leading-tight focus:outline-none focus:shadow-outline"
             type="password"
             name="password"
             value={password}
             placeholder="Enter your password"
             onChange={handleOnChange}
-          />
+          />  
         </div>
         <button className="inline-flex items-center justify-center gap-1.5 rounded-lg border border-green-600 bg-green-600 px-5 py-1 text-sm font-medium text-white transition hover:bg-black focus:outline-none focus:ring" type="submit">Submit</button>
-        <span>
-          Already have an account? <Link to={"/login"}>Login</Link>
+        <div className="mt-8">
+        <span className="text-white font-mono">
+          Already have an account? <Link className="underline text-green-600" to={"/login"}>Login</Link>
         </span>
+        </div>
+        
       </form>
+    </div>
     </div>
   );
 };
