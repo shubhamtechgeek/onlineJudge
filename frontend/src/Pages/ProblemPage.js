@@ -1,7 +1,7 @@
 import React from 'react'
 import SpecificProblem from '../Component/Problems/SpecificProblem';
-import CodeEditior from '../Component/ExecutionWindow/CodeEditior';
 import AlgoJudge from '../Component/AlgoJudge';
+import CodeEditior from '../Component/ExecutionWindow/CodeEditior';
 
 const ProblemPage = () => {
   return (

@@ -1,9 +1,12 @@
-import React, { useState } from 'react';
-import { Controlled as CodeMirror } from 'react-codemirror2';
-import 'D:/onlineJudge/frontend/src/codemirror/lib/codemirror.css'
+import React from 'react';
+import MonacoEditor from 'react-monaco-editor'
 
 
-const CodeEditior = () => {
+  const CodeEditor = ({ code, onChange }) => {
+    const editorDidMount = (editor, monaco) => {
+      console.log('Editor did mount:', editor);
+      // You can perform additional setup here
+    };
 
   return (
     <div className="relative max-w-screen-xl w-1/2 px-4 py-4 sm:px-6 sm:py-8 lg:px-8">
@@ -19,32 +22,40 @@ const CodeEditior = () => {
                 <option value="JM">C++</option>
                 <option value="SRV">Java</option>
                 <option value="JH">Python</option>
-              </select>
-              <select label="Theme" className="inline-flex items-center overflow-hidden rounded-md border dark:border-green-600 dark:bg-gray-900 text-white p-1">
-                
-                <option value="JM">Monokai</option>
-                <option value="SRV">Solarized</option>
-                <option value="JH">lq-dark</option>
-              </select> */}
-          </div>
+              </select>*/}
+          </div>  
         </div>
       </div>
       
       <div className="h-screen bg-green-600 dark:border-green-600 p-0.5 flex flex-col">
-      <div className="h-3/4 bg-green-600 dark:border-green-600">
-            
+      
+      <div className="h-3/4 bg-black dark:border-green-600">
+      <MonacoEditor 
+      className='text-green-600'
+            height="720"
+            language="java"
+            theme="hc-black"
+            value={code}
+            options={{ fontSize: 14 }}
+            onChange={onChange}
+            editorDidMount={editorDidMount}
+          />
+      
+          
         </div>
       <div className="flex h-1/4 dark:border-green-600 pt-0.5 ">
         <div className="w-1/2 h-full bg-black text-green-600 dark:border-green-600 resize-none mr-0.5">
-        {/* xxxx */}
+        
         </div>
         <div className='w-1/2 h-full bg-black text-green-600 dark:border-green-600 resize-none focus:outline-none'>
-        {/* xxxx */}
+       
         </div>
       </div>
     </div>
     </div>
+
+   
   );
 };
 
-export default CodeEditior;
+export default CodeEditor;
