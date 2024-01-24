@@ -8,8 +8,7 @@ const judgeHome = (req, res) => {
 const judgeExec = async (req, res) => {
   //take body from frontend
   //default language would be java
-  const { language = "cpp", code } = req.body;
-
+  const { language , code } = req.body;
   //if user does not code anything and just runs
   if (code == undefined) {
     return res.status(400).json({ sucess: false, error: "Empty code body" });
