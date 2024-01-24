@@ -1,14 +1,12 @@
 const express = require('express');
 const cors = require("cors");
 const { dbConnect } = require('./database/db');
-
-const app = express();
-
 const cookieParser = require("cookie-parser");
 const route = require('./routes/routes');
 
-
+const app = express();
 const PORT = process.env.PORT || 5000;
+
 dbConnect();
 app.use(
     cors({
