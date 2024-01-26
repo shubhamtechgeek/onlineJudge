@@ -2,17 +2,26 @@ const fs = require('fs');
 const path = require('path');
 const {v4: uuid} = require('uuid');
 
-const dirCode = path.join(__dirname, 'codes');
-if(!fs.existsSync(dirCode)){
-	fs.mkdirSync(dirCode, {recursive: true});
-}
+const tempDir = path.join(__dirname, 'temp');
+    fs.mkdirSync(tempDir, { recursive: true });
 
 const generateFile = async (language, code) => {
-	const jobID = uuid();                                 //jhvc25j2hcv2j5hv2j5
-	const filename = `${jobID}.${language}`;              //jhvc25j2hcv2j5hv2j5.cpp
-	const filePath = path.join(dirCode, filename);
-	await fs.writeFileSync(filePath, code);
-    return filePath;
+	const userCodeFilePath = path.join(tempDir, 'submission.' + getExtensionForLanguage(language));
+    fs.writeFileSync(userCodeFilePath, code);
+    return userCodeFilePath;
 };
+
+
+const getExtensionForLanguage = (language) => {
+    switch (language.toLowerCase()) {
+
+      case 'cpp':
+        return 'cpp';
+      case 'java':
+        return 'java';
+      default:
+        throw new ErrorResponse(`Unsupported language: ${language}`, 400);
+    }
+}
 
 module.exports = {generateFile};
