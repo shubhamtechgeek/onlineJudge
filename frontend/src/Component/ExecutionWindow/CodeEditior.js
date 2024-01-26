@@ -8,6 +8,7 @@ import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 
 const CodeEditor = ({
   code,
+  inputValue,
   onChange,
   language,
   submit,
@@ -34,12 +35,13 @@ const CodeEditor = ({
   const [localOutput, setOutput] = useState(output || "");
   const [localLanguage, setLocalLanguage] = useState(language || ""); // Initialize with the provided language prop
   const [localCode, setLocalCode] = useState(code || ""); // Initialize with the provided code prop
+  const [localInputValue, setInputValue] = useState(inputValue || undefined);
 
   const handleLanguageSelectLocal = (event) => {
     // Update the local state
     const selectedLanguage = event.target.value;
     setLocalLanguage(selectedLanguage);
-    
+
     // Call the parent handleLanguageSelect with the selected language
     if (handleLanguageSelect) {
       handleLanguageSelect(selectedLanguage);
@@ -49,7 +51,7 @@ const CodeEditor = ({
   const handleChangeLocal = (newCode) => {
     // Update the local state
     setLocalCode(newCode);
-    
+
     // Call the parent onChange with the new code
     if (onChange) {
       onChange(newCode);
@@ -58,23 +60,23 @@ const CodeEditor = ({
 
   const handleRunCode = async () => {
     try {
-      console.log({ localLanguage, localCode });
+      console.log({ localLanguage, localCode, localInputValue });
       const response = await axios.post(
         "http://localhost:5001/run",
-        { language: localLanguage, code: localCode }
-
+        { language: localLanguage, code: localCode, input: localInputValue }
       );
-
+  
       // if (!response.ok) {
       //   throw new Error("Execution failed");
       // }
-      console.log(response.data.output);
-      setOutput(response.data.output);
+      console.log(response.data.data);
+      setOutput(response.data.data);
     } catch (error) {
       console.error("Error executing code:", error);
       setOutput("Error executing code");
     }
   };
+  
 
   return (
     <div className="relative max-w-screen-xl w-1/2 h-1/2 px-4 py-4 sm:px-6 sm:py-8 lg:px-8">
@@ -97,7 +99,7 @@ const CodeEditor = ({
       <div className="h-screen bg-green-600 dark:border-green-600 p-0.5 flex flex-col">
         <div className="flex">
           <div>
-          <select
+            <select
               value={language}
               onChange={handleLanguageSelectLocal}
               label="Language"
@@ -173,10 +175,15 @@ const CodeEditor = ({
         </div>
         <div className="flex h-1/4 dark:border-green-600 pt-0.5 ">
           <div className="w-1/2 h-full bg-black text-green-600 dark:border-green-600 resize-none mr-0.5">
-            <textarea className="w-full h-full bg-black text-green-600 dark:border-green-600 resize-none mr-0.5"></textarea>
+            <textarea
+              value={inputValue}
+              onChange={(e) => setInputValue(e.target.value)}
+              className="w-full h-full bg-black text-green-600 dark:border-green-600 resize-none mr-0.5"
+            ></textarea>
           </div>
-          <div className="w-1/2 h-full bg-black text-green-600 dark:border-green-600 resize-none focus:outline-none">
-           {localOutput}
+          <div className="w-full h-full bg-black text-green-600 dark:border-green-600 resize-none focus:outline-none">
+           {/* Apply the white-space style to preserve line breaks */}
+          <pre style={{ whiteSpace: 'pre-wrap' }}>{localOutput}</pre>
           </div>
         </div>
       </div>
