@@ -1,4 +1,4 @@
-package org.backend.onlinejudge.Service;
+package org.backend.onlinejudge.Service.Impl;
 
 
 import org.backend.onlinejudge.Entity.User;

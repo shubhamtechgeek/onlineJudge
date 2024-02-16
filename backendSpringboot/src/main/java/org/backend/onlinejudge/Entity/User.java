@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @Document(collection = "User")
-public class User {
+public class User extends BaseEntity{
 
     @Transient
     private static final String SEQUENCE_NAME = "User_Sequence";
@@ -36,7 +36,11 @@ public class User {
 
     private String password;
 
-    private LocalDateTime createdDate;
+    private Long acCount = 0L;
+
+    private Long submitCount = 0L;
+
+    private Boolean enabled = true;
 
 
     public static String getSequenceName() {return SEQUENCE_NAME;}

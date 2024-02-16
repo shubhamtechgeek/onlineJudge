@@ -1,10 +1,12 @@
-package org.backend.onlinejudge.Service;
+package org.backend.onlinejudge.Service.Impl;
 
 import lombok.RequiredArgsConstructor;
 import org.backend.onlinejudge.DTO.UserDTO;
 import org.backend.onlinejudge.Entity.User;
 import org.backend.onlinejudge.Exception.UserAlreadyExistsException;
 import org.backend.onlinejudge.Repository.UserRepository;
+import org.backend.onlinejudge.Service.SequenceGeneratorService;
+import org.backend.onlinejudge.Service.UserService;
 import org.backend.onlinejudge.Util.Converter;
 import org.springframework.stereotype.Service;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -38,28 +40,10 @@ public class UserServiceImpl implements UserService {
         user.setPassword(passwordEncoder.encode(userDTO.getPassword())); // Encrypt the password before storing in the database
 //        user.setPassword((userDTO.getPassword()));
         user.setUserId("U" + sgs.generateSequence(User.getSequenceName()));
-        user.setCreatedDate(LocalDateTime.now());
+//        user.setCreatedDate(LocalDateTime.now());
         user = userRepository.save(user);
         return Converter.userToUserDto(user);
     }
-
-
-
-//    @Override
-//    public UserTokenResponse login(String usernameOrEmail, String password) {
-//        Authentication authentication=authenticate(loginRequest.getEmail(), loginRequest.getPassword());
-//        SecurityContextHolder.getContext().setAuthentication(authentication);
-//
-//        String token = jwtProvider.generateToken(authentication);
-//
-//        UserTokenResponse authResponse = new UserTokenResponse();
-//        authResponse.setToken(token);
-//        authResponse.setMessage("Sign in Successful");
-//    }
-
-
-
-
 
 
     @Override

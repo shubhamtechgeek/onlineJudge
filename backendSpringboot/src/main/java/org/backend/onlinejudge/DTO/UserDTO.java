@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 @Setter
 public class UserDTO {
 
-//    private String userId;
+    private String userId;
 
     private String username;
 
@@ -22,7 +22,5 @@ public class UserDTO {
 
     private String password;
 
-//    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss", timezone = "UTC")
-//    private LocalDateTime createdDate;
 
 }
